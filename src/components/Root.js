@@ -4,7 +4,7 @@ import App from "./App";
 import { hot } from 'react-hot-loader/root';
 import { isDev } from "../utils/dev-prod";
 import {themes} from "../styles/themes";
-
+import { BrowserRouter } from "react-router-dom";
 
 function TestTheme() {
     return (
@@ -22,10 +22,12 @@ const Message = styled.div(
 
 function Root() {
     return (
+        <BrowserRouter>
         <ThemeProvider theme={themes.dark}>
             <App/>
             <TestTheme/>
         </ThemeProvider>
+        </BrowserRouter>
     )   
 }
 

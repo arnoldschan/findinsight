@@ -1,12 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import TopBar from '../NavigationPane/TopBar';
+import NavBar from "../NavigationPane/NavBar";
 
 function App() {
+  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+
   return (
     <div className="App">
+      {/* <TopBar/> */}
+      <TopBar onMobileNavOpen={() => setMobileNavOpen(true)}/>
+      <NavBar
+        onMobileClose={() => setMobileNavOpen(false)}
+        openMobile={isMobileNavOpen}
+      />
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Essdit <code>src/App.js</code>  sa to sav.
         </p>
