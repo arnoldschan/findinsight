@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import TopBar from '../NavigationPane/TopBar';
-import NavBar from "../NavigationPane/NavBar";
+import NavigationBar from "../NavigationPane/NavigationBar";
 
 function App() {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
@@ -9,11 +8,7 @@ function App() {
   return (
     <div className="App">
       {/* <TopBar/> */}
-      <TopBar onMobileNavOpen={() => setMobileNavOpen(true)}/>
-      <NavBar
-        onMobileClose={() => setMobileNavOpen(false)}
-        openMobile={isMobileNavOpen}
-      />
+      <NavigationBar/>
       <header className="App-header">
         <p>
           Essdit <code>src/App.js</code>  sa to sav.
