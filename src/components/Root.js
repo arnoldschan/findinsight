@@ -5,6 +5,8 @@ import { hot } from 'react-hot-loader/root';
 import { isDev } from "../utils/dev-prod";
 import {themes} from "../styles/themes";
 import { BrowserRouter } from "react-router-dom";
+import TopBar from './TopBar';
+import SideBar from './SideBar';
 
 function TestTheme() {
     return (
@@ -21,11 +23,22 @@ const Message = styled.div(
 
 
 function Root() {
+    const [open, setOpen] = React.useState(false);
+    const handleDrawerOpen = () => {
+      setOpen(true);
+    };
+    const handleDrawerClose = () => {
+      setOpen(false);
+    };
+
     return (
         <BrowserRouter>
         <ThemeProvider theme={themes.dark}>
+            <React.Fragment>
+            <TopBar open={open} handleDrawerOpen={handleDrawerOpen}/>
+            <SideBar open={open} handleDrawerClose={handleDrawerClose}/>
             <App/>
-            <TestTheme/>
+            </React.Fragment>
         </ThemeProvider>
         </BrowserRouter>
     )   

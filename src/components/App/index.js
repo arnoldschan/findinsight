@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import NavigationBar from "../NavigationPane/NavigationBar";
 
 function App() {
-  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
     <div className="App">
       {/* <TopBar/> */}
-      <NavigationBar/>
       <header className="App-header">
         <p>
           Essdit <code>src/App.js</code>  sa to sav.
