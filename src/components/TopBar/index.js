@@ -7,6 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import DropdownMenu from './Dropdown';
 
 
 const drawerWidth = 240;
@@ -21,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -62,9 +67,10 @@ export default function TopBar({open, handleDrawerOpen}) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Mini variant drawer
+            Find insights
           </Typography>
         </Toolbar>
+      <DropdownMenu/>
       </AppBar>
       {/* <main className={classes.content}>
         <div className={classes.toolbar} />

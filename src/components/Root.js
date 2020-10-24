@@ -7,6 +7,7 @@ import {themes} from "../styles/themes";
 import { BrowserRouter } from "react-router-dom";
 import TopBar from './TopBar';
 import SideBar from './SideBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TestTheme() {
     return (
