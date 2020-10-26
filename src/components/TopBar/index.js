@@ -52,6 +52,10 @@ const useStyles = makeStyles((theme) => ({
   hide: {
     display: 'none',
   },
+  setting: {
+    display: 'flex',
+    flexDirection: 'row',
+  }
 }));
 
 export default function TopBar({open, handleDrawerOpen, setProject, setColor, color}) {
@@ -80,7 +84,7 @@ export default function TopBar({open, handleDrawerOpen, setProject, setColor, co
             Find insights
           </Typography>
         </Toolbar>
-      <Box>
+      <Box className={classes.setting}>
       <DropdownMenu setProject={setProject}/>
       <IconButton style={{color:'white'}} onClick={()=>setColor(color === "light" ? "dark": "light")}>
       <SettingsBrightnessIcon/>

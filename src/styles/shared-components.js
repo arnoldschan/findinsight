@@ -1,16 +1,19 @@
 import styled from 'styled-components'
-import { Input as InputMaterial } from "@material-ui/core";
+import Input from "@material-ui/core/Input";
+import Box from "@material-ui/core/Box";
+
 export const View = styled.div(
     {paddingTop: 64,
         width: '100%',
     minHeight: '100vh',
     },
     ({ theme })=> theme.app)
-export const Box = styled.div(
+export const Boxed = styled(Box)(
     ({theme, ...props})=>(
         { margin: 10 ,borderRadius: 10, padding: 20, ...props,
         ...theme.box}
         ))
-export const Input = styled(InputMaterial)(
-    ({...props})=>( {borderRadius: 5, ...props}),
-        ({ theme }) => theme.input)
+export const InputBox = styled(Input)(
+    ({theme, ...props})=>( {borderRadius: 5, ...props,
+        ...theme.input}
+        ))
