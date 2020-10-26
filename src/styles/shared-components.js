@@ -7,9 +7,10 @@ export const View = styled.div(
     },
     ({ theme })=> theme.app)
 export const Box = styled.div(
-    ({...props})=>(
-        { margin: 10 ,borderRadius: 10, padding: 20, ...props}),
-        ({ theme }) => theme.box)
+    ({theme, ...props})=>(
+        { margin: 10 ,borderRadius: 10, padding: 20, ...props,
+        ...theme.box}
+        ))
 export const Input = styled(InputMaterial)(
     ({...props})=>( {borderRadius: 5, ...props}),
         ({ theme }) => theme.input)

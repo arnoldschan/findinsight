@@ -10,7 +10,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import TopBar from './TopBar';
 import SideBar from './SideBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SearchPost from './SearchPost';
+import SearchPost from './SocialMediaData';
 
 
 
@@ -35,7 +35,7 @@ function Root() {
             <TopBar open={open} handleDrawerOpen={handleDrawerOpen} setProject={setProject} color={color} setColor={setColor}/>
             <SideBar open={open} handleDrawerClose={handleDrawerClose}/>
             <Switch>
-            <Route path="/searchpost">
+            <Route path="/social-media-data">
                 <SearchPost/>
             </Route> 
             <Route path="/">

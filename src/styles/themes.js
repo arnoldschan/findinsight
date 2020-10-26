@@ -3,9 +3,6 @@ export const themes = {
         name: 'light',
         app: {
             backgroundColor: 'white',
-            minHeight: '100vh',
-            minWidth: '100vh',
-            flex: 1,
         },
         appBar:{
             borderBottom: 0,

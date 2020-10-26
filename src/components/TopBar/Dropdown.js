@@ -12,7 +12,7 @@ const DropdownMenu = () => {
         '& .MuiInputBase-root, .MuiInputLabel-root':{
             ...(theme.dropdown)
           },
-          '& label.Mui-focused': {
+          '& .Mui-focused, .MuiFormLabel-root': {
             color: 'white',
           },
           '& .MuiOutlinedInput-root': {
@@ -32,11 +32,11 @@ const DropdownMenu = () => {
           <TextFieldStyled
           select
             SelectProps={{native:true}}
-            label="Search input"
-            onChange={(e)=>history.push("/"+e.target.value)}
+            label="Data Source"
+            onChange={(e)=>history.push(e.target.value)}
           >
-            {[{title: 'a'},{title: 'b'}].map((option) => (
-            <option key={option.title} value={option.title}>{option.title}</option>
+            {[{title: 'Social media data', link: "/social-media-data"},{title: 'Coming Soon', link: "/coming-soon"}].map((option) => (
+            <option key={option.title} value={option.link}>{option.title}</option>
             ))}
           </TextFieldStyled>
     )
