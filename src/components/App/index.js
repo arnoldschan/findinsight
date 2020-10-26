@@ -1,10 +1,11 @@
 import React from 'react';
+import { View } from 'styles/shared-components';
 import './App.css';
 
 function App() {
 
   return (
-    <div className="App">
+    <View>
       {/* <TopBar/> */}
       <header className="App-header">
         <p>
@@ -19,7 +20,7 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
+    </View>
   );
 }
 
