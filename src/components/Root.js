@@ -11,7 +11,7 @@ import TopBar from './TopBar';
 import SideBar from './SideBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchPost from './SocialMediaData';
-
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 
@@ -28,6 +28,7 @@ function Root() {
     };
     return (
         <BrowserRouter>
+        <CssBaseline/>
         <StylesProvider injectFirst>
             <MuiThemeProvider theme={MuiTheme}>
         <ThemeProvider theme={MuiTheme}>
