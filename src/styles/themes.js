@@ -15,7 +15,7 @@ const shared = {MuiTypography: {
 export const themes = {
     light: {
         name: 'light',
-        props: shared,
+        typography: shared,
         app: {
             backgroundColor: 'white',
         },

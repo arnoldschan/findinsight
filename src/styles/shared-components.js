@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Input from "@material-ui/core/Input";
+import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 
 export const View = styled.div(
@@ -13,7 +13,7 @@ export const Boxed = styled(Box)(
         { margin: 10 ,borderRadius: 10, padding: 20, ...props,
         ...theme.box}
         ))
-export const InputBox = styled(Input)(
+export const InputBox = styled(TextField)(
     ({theme, ...props})=>( {borderRadius: 5, ...props,
         ...theme.input}
         ))
