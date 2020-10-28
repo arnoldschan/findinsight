@@ -7,6 +7,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { InputBox } from "styles/shared-components";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,11 +26,21 @@ const useStyles = makeStyles((theme) => ({
     }
     
 }));
+let cancelToken;
 
 function Input({keyword, setKeyword}) {
     const classes = useStyles();
     const [error, setError] = useState(false)
     const keywordValidate = (e)=>{
+        if (typeof cancelToken != typeof undefined) {
+            cancelToken.cancel();
+          }
+          cancelToken = axios.CancelToken.source();
+        const url = `https://www.instagram.com/web/search/topsearch/?context=blended&query=%23${keyword}&include_reel=true`
+        axios.get(url,{ cancelToken: cancelToken.token })
+        .then(res => {
+          console.log(res.data)
+        })
         
         setKeyword(e.target.value);
         if (e.target.value === ""){
@@ -37,8 +48,6 @@ function Input({keyword, setKeyword}) {
         } else {
             setError(false)
         }
-        console.log(error)
-
     }
 
     return (
@@ -70,9 +79,9 @@ function Input({keyword, setKeyword}) {
                     helperText="press 'return' for multiple keyword search"
                     label="Required*"
                     startAdornment={
-                        (<InputAdornment position="start">
+                        <InputAdornment position="start">
                             <AccountCircle />
-                        </InputAdornment>)
+                        </InputAdornment>
                     }
                     
                     />
