@@ -11,13 +11,31 @@ const shared = {MuiTypography: {
       body1: 'span',
       body2: 'span',
     },}}
+const input = {
+    '& .MuiInputBase-root, .MuiInputLabel-root': {
+        color: 'white'
+    },
 
+    '& .MuiInput-underline:before':{
+        borderBottom: '0px',
+    },
+    '& .MuiSvgIcon-root': {
+        color: 'white',
+    },
+
+}
 export const themes = {
     light: {
         name: 'light',
         typography: shared,
         app: {
             backgroundColor: 'white',
+        },
+        palette: {
+            text:{
+                primary: "#000000",
+                secondary: "#212121"
+            },
         },
         appBar:{
             borderBottom: 0,
@@ -26,8 +44,10 @@ export const themes = {
             backgroundColor: 'white',
             color: 'black'
         },
-        dropdown: {
-            color: 'white',
+        input: input,
+        option: {
+            backgroundColor: 'white',
+            color: 'black'
         },
         box: {
             backgroundColor: 'white',
@@ -49,6 +69,10 @@ export const themes = {
           secondary: {
             main: '#b9f6ca',
           },
+          text:{
+              primary: "#ffffff",
+              secondary: "#dcdcdc"
+          }
         },
         app:{
             backgroundColor: 'black',
@@ -61,9 +85,8 @@ export const themes = {
             backgroundColor: 'black',
             color: 'white'
         },
-        dropdown: {
-            color: 'white',
-        },
+        input: { '&.Mui-focused':{color:'white'},
+            ...input},
         dropdownItem : {
             border: '1px solid',
         },

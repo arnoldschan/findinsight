@@ -6,7 +6,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { InputBox } from "styles/shared-components";
+import { InputBox, InputLabelStyled } from "styles/shared-components";
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -84,7 +84,7 @@ function Input({keyword, setKeyword}) {
                 </FormGroup>
             <Box display='flex' flexDirection="row" alignItems="center" >
             <FormControl required>
-                <InputLabel >Keyword:</InputLabel>
+                <InputLabelStyled >Keyword:</InputLabelStyled>
                     <InputM
                         id="keyword"
                         onChange={e=>keywordValidate(e)}
