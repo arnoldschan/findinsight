@@ -64,7 +64,7 @@ export const themes = {
             paper: '#000000',
           },
           primary: {
-              main: '#000000',
+              main: '#90caf9',
             },
           secondary: {
             main: '#b9f6ca',
@@ -80,6 +80,8 @@ export const themes = {
         },
         appBar:{
             borderBottom: '1px solid #cacaca',
+            backgroundColor: 'black',
+            color: 'white',
         },
         messages: {
             backgroundColor: 'black',
