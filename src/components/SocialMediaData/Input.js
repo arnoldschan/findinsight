@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Typography from "@material-ui/core/Typography";
-import { Input as InputM, Box, Button, FormHelperText, FormLabel, InputAdornment, InputLabel, makeStyles } from '@material-ui/core';
+import { Input as InputM, Box, Button, FormHelperText, FormLabel, InputAdornment, InputLabel, makeStyles, RadioGroup, Radio } from '@material-ui/core';
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
@@ -64,64 +64,72 @@ function Input({keyword, setKeyword}) {
         console.log(platform)
     };
     return (
-        <React.Fragment>
-        <FormGroup className={classes.platform}>
+        <Box display='flex' flexDirection="row" alignItems="center" >
+            <Box display='flex' flexDirection="column" >
+                <FormGroup className={classes.platform}>
+                        <FormControlLabel
+                            className={classes.label}
+                            control={ <Checkbox checked={platform.ig} onChange={platformChange} name="ig" />}
+                            label="Instagram"
+                        />
+                        <FormControlLabel
+                            className={classes.label}
+                            control={ <Checkbox checked={platform.soon1} onChange={platformChange} name="soon1" />}
+                            label="SOON"
+                        />
+                        <FormControlLabel
+                            className={classes.label}
+                            control={ <Checkbox checked={platform.soon2} onChange={platformChange} name="soon2" />}
+                            label="SOON"
+                        />
+                </FormGroup>
+                <Box display='flex' flexDirection="row" alignItems="center" >
+                    <FormControl required>
+                        <InputLabelStyled >Keyword:</InputLabelStyled>
+                            <InputM
+                                id="keyword"
+                                onChange={e=>keywordValidate(e)}
+                                value={keyword}
+                                error={error}
+                                multiline
+                                helperText="press 'return' for multiple keyword search"
+                                label="Required*"
+                                startAdornment={
+                                    <InputAdornment position="start">
+                                        <AccountCircle />
+                                    </InputAdornment>
+                                }
+                                
+                                />
+                                {/* <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText> */}
+                    </FormControl>
+                </Box>
+                <FormGroup className={classes.options}>
+                {/* <FormLabel component="legend">Data to obtain</FormLabel> */}
                     <FormControlLabel
                         className={classes.label}
-                        control={ <Checkbox checked={platform.ig} onChange={platformChange} name="ig" />}
-                        label="Instagram"
+                        disabled
+                        control={ <Checkbox checked={true} name="posts" />}
+                        label="Posts Detail"
                     />
                     <FormControlLabel
                         className={classes.label}
-                        control={ <Checkbox checked={platform.soon1} onChange={platformChange} name="soon1" />}
-                        label="SOON"
-                    />
-                    <FormControlLabel
-                        className={classes.label}
-                        control={ <Checkbox checked={platform.soon2} onChange={platformChange} name="soon2" />}
-                        label="SOON"
+                        control={ <Checkbox name="comments" />}
+                        label="Comments"
                     />
                 </FormGroup>
-            <Box display='flex' flexDirection="row" alignItems="center" >
-            <FormControl required>
-                <InputLabelStyled >Keyword:</InputLabelStyled>
-                    <InputM
-                        id="keyword"
-                        onChange={e=>keywordValidate(e)}
-                        value={keyword}
-                        error={error}
-                        multiline
-                        helperText="press 'return' for multiple keyword search"
-                        label="Required*"
-                        startAdornment={
-                            <InputAdornment position="start">
-                                <AccountCircle />
-                            </InputAdornment>
-                        }
-                        
+            </Box>
+                <Box display='flex' flexDirection="row" alignItems="center" >
+                    <RadioGroup>
+                        <FormControlLabel
+                            value="test"
+                            control={<Radio color="primary"/>}
+                            label="test"
                         />
-                        <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
-            </FormControl>
-            </Box>
-            <FormGroup className={classes.options}>
-            {/* <FormLabel component="legend">Data to obtain</FormLabel> */}
-                <FormControlLabel
-                    className={classes.label}
-                    disabled
-                    control={ <Checkbox checked={true} name="posts" />}
-                    label="Posts Detail"
-                />
-                <FormControlLabel
-                    className={classes.label}
-                    control={ <Checkbox name="comments" />}
-                    label="Comments"
-                />
-            </FormGroup>
-            <Box display='flex' flexDirection="row" alignItems="center" >
-
-                <Button>Submit</Button>
-            </Box>
-            </React.Fragment>
+                    </RadioGroup>
+                    <Button>Submit</Button>
+                </Box>
+        </Box>
     )
 }
 
