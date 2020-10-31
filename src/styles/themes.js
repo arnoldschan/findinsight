@@ -67,7 +67,7 @@ export const themes = {
               main: '#90caf9',
             },
           secondary: {
-            main: '#b9f6ca',
+            main: '#f48eb1',
           },
           text:{
               primary: "#ffffff",
