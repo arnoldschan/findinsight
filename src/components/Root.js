@@ -12,7 +12,7 @@ import SideBar from './SideBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchPost from './SocialMediaData';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
+import { createGlobalStyle } from 'styled-components'
 
 
 function Root() {
@@ -26,9 +26,16 @@ function Root() {
     const handleDrawerClose = () => {
       setOpen(false);
     };
+    const GlobalStyle = createGlobalStyle`
+    body {
+        color: ${props => (props.theme.palette.text.primary)};
+    }
+    `
+
     return (
         <BrowserRouter>
         <CssBaseline/>
+        <GlobalStyle theme={MuiTheme}/>
         <StylesProvider injectFirst>
             <MuiThemeProvider theme={MuiTheme}>
         <ThemeProvider theme={MuiTheme}>
