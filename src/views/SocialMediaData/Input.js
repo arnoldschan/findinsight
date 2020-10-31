@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import Typography from "@material-ui/core/Typography";
 import { Input as InputM, Box, Button, FormHelperText, FormLabel, InputAdornment, InputLabel, makeStyles, RadioGroup, Radio } from '@material-ui/core';
-import Checkbox from "@material-ui/core/Checkbox";
+
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { InputBox, Boxed, InputLabelStyled } from "styles/shared-components";
 import axios from 'axios';
+import Checkbox from 'components/Checkbox';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,14 +17,7 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.text.primary,
       padding: theme.spacing(3),
     },
-    label: {
-        color: theme.palette.text.primary
-    },
-    platform:{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
+    
     options:{
         display: 'flex',
         flexDirection: 'column',
@@ -32,7 +26,10 @@ const useStyles = makeStyles((theme) => ({
         '& label':{
             marginBottom: 0,
         }
-    }
+    },
+    left: {
+        margin: 20,
+    },
     
 }));
 let cancelToken;
@@ -58,31 +55,24 @@ function Input({keyword, setKeyword}) {
             setError(false)
         }
     }
-    const [platform, setPlatform] = useState({ig: false, soon1: false, soon2: false})
+    const [platform, setPlatform] = useState(
+        {
+            Instagram: {
+                checked: true
+            },
+            soon1: {
+                checked: false
+            }, 
+            soon2: {
+                checked: false
+        }})
     const platformChange = (event) => {
-        setPlatform({ ...platform, [event.target.name]: event.target.checked });
-        console.log(platform)
+        setPlatform({ ...platform, [event.target.name]: {...platform[event.target.name] ,checked: event.target.checked} });
     };
     return (
         <Box display='flex' flexDirection="row" alignItems="center" justifyContent="center" >
-            <Box display='flex' flexDirection="column" >
-                <FormGroup className={classes.platform}>
-                        <FormControlLabel
-                            className={classes.label}
-                            control={ <Checkbox checked={platform.ig} onChange={platformChange} name="ig" />}
-                            label="Instagram"
-                        />
-                        <FormControlLabel
-                            className={classes.label}
-                            control={ <Checkbox checked={platform.soon1} onChange={platformChange} name="soon1" />}
-                            label="SOON"
-                        />
-                        <FormControlLabel
-                            className={classes.label}
-                            control={ <Checkbox checked={platform.soon2} onChange={platformChange} name="soon2" />}
-                            label="SOON"
-                        />
-                </FormGroup>
+            <Box className={classes.left} display='flex' flexDirection="column" >
+                <Checkbox checked={platform} checkedHandler={platformChange}/>
                 <Box display='flex' flexDirection="row" alignItems="center" >
                     <FormControl required>
                         <InputLabelStyled >Keyword:</InputLabelStyled>
@@ -101,12 +91,11 @@ function Input({keyword, setKeyword}) {
                                 }
                                 
                                 />
-                                {/* <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText> */}
                     </FormControl>
                 </Box>
                 <FormGroup className={classes.options}>
                 {/* <FormLabel component="legend">Data to obtain</FormLabel> */}
-                    <FormControlLabel
+                    {/* <FormControlLabel
                         className={classes.label}
                         disabled
                         control={ <Checkbox checked={true} name="posts" />}
@@ -116,7 +105,7 @@ function Input({keyword, setKeyword}) {
                         className={classes.label}
                         control={ <Checkbox name="comments" />}
                         label="Comments"
-                    />
+                    /> */}
                 </FormGroup>
             </Box>
                 <Box display='flex' flexDirection="row" alignItems="center" >

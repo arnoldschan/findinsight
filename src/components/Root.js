@@ -10,7 +10,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import TopBar from './TopBar';
 import SideBar from './SideBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SearchPost from './SocialMediaData';
+import SearchPost from '../views/SocialMediaData';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createGlobalStyle } from 'styled-components'
 
