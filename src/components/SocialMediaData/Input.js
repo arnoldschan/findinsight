@@ -6,7 +6,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import { InputBox, InputLabelStyled } from "styles/shared-components";
+import { InputBox, Boxed, InputLabelStyled } from "styles/shared-components";
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -64,7 +64,7 @@ function Input({keyword, setKeyword}) {
         console.log(platform)
     };
     return (
-        <Box display='flex' flexDirection="row" alignItems="center" >
+        <Box display='flex' flexDirection="row" alignItems="center" justifyContent="center" >
             <Box display='flex' flexDirection="column" >
                 <FormGroup className={classes.platform}>
                         <FormControlLabel
@@ -120,14 +120,23 @@ function Input({keyword, setKeyword}) {
                 </FormGroup>
             </Box>
                 <Box display='flex' flexDirection="row" alignItems="center" >
-                    <RadioGroup>
+
+                        
+                    <RadioGroup value="once">
+                    <FormLabel component="legend">Task type</FormLabel>
                         <FormControlLabel
-                            value="test"
+                            value="once"
                             control={<Radio color="primary"/>}
-                            label="test"
-                        />
+                            label="One-time task"
+                            />
+                        <FormControlLabel
+                            value="scheduled"
+                            control={<Radio color="primary"/>}
+                            label="Scheduled task"
+                            />
                     </RadioGroup>
-                    <Button>Submit</Button>
+                    <Button variant="contained" color="primary">Submit</Button>
+
                 </Box>
         </Box>
     )
