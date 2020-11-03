@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Boxed } from "styles/shared-components";
 import Input from "./Input";
 import axios from "axios";
-
+import { DataGrid } from '@material-ui/data-grid';
 
 let cancelToken;
 
 function SearchPost() {
+    const result = require('./result.json')
+    useEffect(() => {
+        console.log(result)
+    }, [])
     const [keyword, setKeyword] = useState("")
     const [platform, setPlatform] = useState(
         {
@@ -25,7 +29,7 @@ function SearchPost() {
         // }
         cancelToken = axios.CancelToken.source();
         
-        const CRAWLERHUB_ADDRESS = "http://localhost:8800/"
+        const CRAWLERHUB_ADDRESS = "http://54.248.141.206/"
         const url = `${CRAWLERHUB_ADDRESS}ig/user?key=${keyword}`
         axios.get(url)
         .then(res => {
@@ -34,6 +38,40 @@ function SearchPost() {
             console.error(res.data)
         })
         }
+    const columns = [
+        { field: 'username', headerName: 'ID', width: 70 },
+        { field: 'content', headerName: 'Content', width: 130 },
+        { field: 'post_link', headerName: 'Post Link', width: 130 },
+        {
+            field: 'post_time',
+            headerName: 'Post Time',
+            type: 'dateTime',
+            width: 90,
+        },
+        {
+            field: 'likes_count',
+            headerName: 'Likes',
+            type: 'number',
+            width: 90
+        },
+        {
+            field: 'comments_count',
+            headerName: 'Comments',
+            type: 'number',
+            width: 90
+        }
+        ];
+
+        const rows = result.result[0].posts.map(post => {
+            return {...post, id: post.post_id}
+        });
+
+        const sortModel = [
+            {
+              field: 'post_time',
+              sort: 'desc',
+            },
+          ];
     return (
         <View>
             <Boxed>
@@ -42,6 +80,11 @@ function SearchPost() {
                         searchHandler={searchHandler}
                     />
             </Boxed>
+
+                    <Boxed style={{ height: 450 }}>
+                        <DataGrid sortingOrder={['desc', 'asc']}
+  sortModel={sortModel} rows={rows} rowHeight={25} columns={columns} pageSize={10} checkboxSelection />
+                    </Boxed>
         </View>
     )
 }
