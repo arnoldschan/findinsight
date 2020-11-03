@@ -7,9 +7,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { InputBox, Boxed, InputLabelStyled } from "styles/shared-components";
-import axios from 'axios';
 import Checkbox from 'components/Checkbox';
-
 const useStyles = makeStyles((theme) => ({
     root: {
       ...theme.typography.primary,
@@ -32,21 +30,24 @@ const useStyles = makeStyles((theme) => ({
     },
     
 }));
-let cancelToken;
 
-function Input({keyword, setKeyword}) {
+
+function Input({keyword, setKeyword, platform, setPlatform, searchHandler}) {
     const classes = useStyles();
     const [error, setError] = useState(false)
+
+    const [taskType, setTaskType] = useState({type: "once"})
     const keywordValidate = (e)=>{
-        if (typeof cancelToken != typeof undefined) {
-            cancelToken.cancel();
-          }
-          cancelToken = axios.CancelToken.source();
-        const url = `https://www.instagram.com/web/search/topsearch/?context=blended&query=%23${keyword}&include_reel=true`
-        axios.get(url,{ cancelToken: cancelToken.token })
-        .then(res => {
-          console.log(res.data)
-        })
+        // if (typeof cancelToken != typeof undefined) {
+        // cancelToken.cancel();
+        // }
+        // cancelToken = axios.CancelToken.source();
+
+        // const url = `https://www.instagram.com/web/search/topsearch/?context=blended&query=%23${keyword}&include_reel=true`
+        // axios.get(url,{ cancelToken: cancelToken.token })
+        // .then(res => {
+        //     console.log(res.data)
+        // })
         
         setKeyword(e.target.value);
         if (e.target.value === ""){
@@ -55,24 +56,15 @@ function Input({keyword, setKeyword}) {
             setError(false)
         }
     }
-    const [platform, setPlatform] = useState(
-        {
-            Instagram: {
-                checked: true
-            },
-            soon1: {
-                checked: false
-            }, 
-            soon2: {
-                checked: false
-        }})
     const platformChange = (event) => {
         setPlatform({ ...platform, [event.target.name]: {...platform[event.target.name] ,checked: event.target.checked} });
     };
+
     return (
         <Box display='flex' flexDirection="row" alignItems="center" justifyContent="center" >
             <Box className={classes.left} display='flex' flexDirection="column" >
                 <Checkbox checked={platform} checkedHandler={platformChange}/>
+
                 <Box display='flex' flexDirection="row" alignItems="center" >
                     <FormControl required>
                         <InputLabelStyled >Keyword:</InputLabelStyled>
@@ -110,8 +102,8 @@ function Input({keyword, setKeyword}) {
             </Box>
                 <Box display='flex' flexDirection="row" alignItems="center" >
 
-                        
-                    <RadioGroup value="once">
+                    
+                    <RadioGroup value={taskType.type} onChange={(e) => setTaskType({type: e.target.value})}>
                     <FormLabel component="legend">Task type</FormLabel>
                         <FormControlLabel
                             value="once"
@@ -124,7 +116,7 @@ function Input({keyword, setKeyword}) {
                             label="Scheduled task"
                             />
                     </RadioGroup>
-                    <Button variant="contained" color="primary">Submit</Button>
+                    <Button onClick={searchHandler} variant="contained" color="primary">Submit</Button>
 
                 </Box>
         </Box>
