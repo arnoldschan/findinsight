@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import { ThemeProvider } from "styled-components";
 import { StylesProvider, ThemeProvider as MuiThemeProvider,
 createMuiTheme } from "@material-ui/core";
-import App from "./App";
+import App from "../components/App";
 import { hot } from 'react-hot-loader/root';
 import { isDev } from "../utils/dev-prod";
 import {themes} from "../styles/themes";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import TopBar from './TopBar';
-import SideBar from './SideBar';
+import TopBar from '../components/TopBar';
+import SideBar from '../components/SideBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SearchPost from '../views/SocialMediaData';
+import SearchPost from './SocialMediaData';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createGlobalStyle } from 'styled-components'
 
