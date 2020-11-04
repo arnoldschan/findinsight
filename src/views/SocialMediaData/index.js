@@ -41,12 +41,13 @@ function SearchPost() {
     const columns = [
         { field: 'username', headerName: 'ID', width: 70 },
         { field: 'content', headerName: 'Content', width: 130 },
-        { field: 'post_link', headerName: 'Post Link', width: 130 },
+        { field: 'post_link', headerName: 'Post Link', width: 300,
+            renderCell : (uri)=> (<a href={uri}>ClickHere</a>) },
         {
             field: 'post_time',
             headerName: 'Post Time',
             type: 'dateTime',
-            width: 90,
+            width: 180,
         },
         {
             field: 'likes_count',
