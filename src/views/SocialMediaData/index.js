@@ -3,6 +3,7 @@ import { View, Boxed } from "styles/shared-components";
 import Input from "./Input";
 import axios from "axios";
 import { DataGrid } from '@material-ui/data-grid';
+import Tooltip from '@material-ui/core/Tooltip';
 
 let cancelToken;
 
@@ -40,9 +41,8 @@ function SearchPost() {
         }
     const columns = [
         { field: 'username', headerName: 'ID', width: 70 },
-        { field: 'content', headerName: 'Content', width: 130 },
-        { field: 'post_link', headerName: 'Post Link', width: 300,
-            renderCell : (uri)=> (<a href={uri}>ClickHere</a>) },
+        { field: 'content', headerName: 'Content', width: 250 ,
+        renderCell : (content)=> (<Tooltip placement='top-start' title={content.value}><span>{content.value}</span></Tooltip>) },
         {
             field: 'post_time',
             headerName: 'Post Time',
@@ -60,7 +60,9 @@ function SearchPost() {
             headerName: 'Comments',
             type: 'number',
             width: 90
-        }
+        },
+        { field: 'post_link', headerName: 'Post Link', width: 100,
+        renderCell : (uri)=> (<a href={uri}>ClickHere</a>) },
         ];
 
         const rows = result.result[0].posts.map(post => {
@@ -84,7 +86,7 @@ function SearchPost() {
 
                     <Boxed style={{ height: 450 }}>
                         <DataGrid sortingOrder={['desc', 'asc']}
-  sortModel={sortModel} rows={rows} rowHeight={25} columns={columns} pageSize={10} checkboxSelection />
+  sortModel={sortModel} rows={rows} rowHeight={25} columns={columns} pageSize={10} />
                     </Boxed>
         </View>
     )
