@@ -8,6 +8,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { InputBox, Boxed, InputLabelStyled } from "styles/shared-components";
 import Checkbox from 'components/Checkbox';
+import { DateRangePicker } from 'rsuite'
+
 const useStyles = makeStyles((theme) => ({
     root: {
       ...theme.typography.primary,
@@ -84,6 +86,7 @@ function Input({keyword, setKeyword, platform, setPlatform, searchHandler}) {
                                 
                                 />
                     </FormControl>
+                    <DateRangePicker />
                 </Box>
                 <FormGroup className={classes.options}>
                 {/* <FormLabel component="legend">Data to obtain</FormLabel> */}

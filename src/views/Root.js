@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ThemeProvider } from "styled-components";
 import { StylesProvider, ThemeProvider as MuiThemeProvider,
 createMuiTheme } from "@material-ui/core";
@@ -13,11 +13,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchPost from './SocialMediaData';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createGlobalStyle } from 'styled-components'
-
+import 'rsuite/dist/styles/rsuite-default.css';
+// import 'rsuite/dist/styles/rsuite-dark.css';
 
 function Root() {
     const [open, setOpen] = useState(false);
     const [color, setColor] = useState("dark")
+
+    useEffect(() => {
+        color === "dark" ? require('rsuite/dist/styles/rsuite-dark.css'):
+        require('rsuite/dist/styles/rsuite-default.css')
+    }, [color])
+    
     const [project, setProject] = useState("a")
     const MuiTheme = createMuiTheme(themes[color]);
     const handleDrawerOpen = () => {
