@@ -86,8 +86,8 @@ function Input({keyword, setKeyword, platform, setPlatform, searchHandler}) {
                                 
                                 />
                     </FormControl>
-                    <DateRangePicker />
                 </Box>
+                    <DateRangePicker />
                 <FormGroup className={classes.options}>
                 {/* <FormLabel component="legend">Data to obtain</FormLabel> */}
                     {/* <FormControlLabel

@@ -77,14 +77,14 @@ function SearchPost() {
           ];
     return (
         <View>
-            <Boxed>
+            <Boxed style={{zIndex:3}}>
                     <Input keyword={keyword} setKeyword={setKeyword}
                         platform={platform} setPlatform={setPlatform}
                         searchHandler={searchHandler}
                     />
             </Boxed>
 
-                    <Boxed style={{ height: 450 }}>
+                    <Boxed style={{zIndex: 2, height: 450 }}>
                         <DataGrid sortingOrder={['desc', 'asc']}
   sortModel={sortModel} rows={rows} rowHeight={25} columns={columns} pageSize={10} />
                     </Boxed>
