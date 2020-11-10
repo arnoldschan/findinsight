@@ -9,7 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import { InputBox, Boxed, InputLabelStyled } from "styles/shared-components";
 import Checkbox from 'components/Checkbox';
 import { DateRangePicker } from 'rsuite'
-
+import * as dateFns  from "date-fns";
 const useStyles = makeStyles((theme) => ({
     root: {
       ...theme.typography.primary,
@@ -61,7 +61,16 @@ function Input({keyword, setKeyword, platform, setPlatform, searchHandler}) {
     const platformChange = (event) => {
         setPlatform({ ...platform, [event.target.name]: {...platform[event.target.name] ,checked: event.target.checked} });
     };
-
+    const Ranges = [
+        {
+          label: '1 week',
+          value: datePage => {
+              console.log(datePage)
+            return dateFns.addDays(dateFns.parse(datePage,'yyyy-MM-DD',new Date()), -1);
+          },
+          closeOverlay: false,
+        }
+      ];
     return (
         <Box display='flex' flexDirection="row" alignItems="center" justifyContent="center" >
             <Box className={classes.left} display='flex' flexDirection="column" >
@@ -87,7 +96,9 @@ function Input({keyword, setKeyword, platform, setPlatform, searchHandler}) {
                                 />
                     </FormControl>
                 </Box>
-                    <DateRangePicker />
+                    <DateRangePicker placeholder="Select Data Range" 
+                        ranges={Ranges}
+                        disabledDate={date => dateFns.isAfter(date, new Date())} />
                 <FormGroup className={classes.options}>
                 {/* <FormLabel component="legend">Data to obtain</FormLabel> */}
                     {/* <FormControlLabel
