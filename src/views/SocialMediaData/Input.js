@@ -30,6 +30,17 @@ const useStyles = makeStyles((theme) => ({
     left: {
         margin: 20,
     },
+    datePicker:{
+        margin: 10,
+        display: 'flex',
+        justifyContent: 'center',
+    },
+    input:{
+        display:'flex',
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent: 'center',
+    }
     
 }));
 
@@ -76,7 +87,7 @@ function Input({keyword, setKeyword, platform, setPlatform, dateRange, setDateRa
             <Box className={classes.left} display='flex' flexDirection="column" >
                 <Checkbox checked={platform} checkedHandler={platformChange}/>
 
-                <Box display='flex' flexDirection="row" alignItems="center" >
+                <Box className={classes.input}  >
                     <FormControl required>
                         <InputLabelStyled >Keyword:</InputLabelStyled>
                             <InputM
@@ -96,6 +107,7 @@ function Input({keyword, setKeyword, platform, setPlatform, dateRange, setDateRa
                                 />
                     </FormControl>
                 </Box>
+                <Box className={classes.datePicker}>
                     <DateRangePicker placeholder="Select Data Range" 
                         ranges={[
                         {
@@ -127,6 +139,7 @@ function Input({keyword, setKeyword, platform, setPlatform, dateRange, setDateRa
                         disabledDate={date => dateFns.isAfter(date, new Date())} 
                         onOk={date=> setDateRange(date) }
                         />
+                </Box>
                 <FormGroup className={classes.options}>
                 {/* <FormLabel component="legend">Data to obtain</FormLabel> */}
                     {/* <FormControlLabel
