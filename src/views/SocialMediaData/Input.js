@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function Input({keyword, setKeyword, platform, setPlatform, searchHandler}) {
+function Input({keyword, setKeyword, platform, setPlatform, dateRange, setDateRange, searchHandler}) {
     const classes = useStyles();
     const [error, setError] = useState(false)
 
@@ -97,8 +97,36 @@ function Input({keyword, setKeyword, platform, setPlatform, searchHandler}) {
                     </FormControl>
                 </Box>
                     <DateRangePicker placeholder="Select Data Range" 
-                        ranges={Ranges}
-                        disabledDate={date => dateFns.isAfter(date, new Date())} />
+                        ranges={[
+                        {
+                            label: 'Last 7 days',
+                            value: [dateFns.subDays(new Date(), 7), new Date()],
+                            closeOverlay: false,
+                        },
+                        {
+                            label: 'Last 14 days',
+                            value: [dateFns.subDays(new Date(), 14), new Date()],
+                            closeOverlay: false,
+                        },
+                        {
+                            label: 'Last 30 days',
+                            value: [dateFns.subDays(new Date(), 31), new Date()],
+                            closeOverlay: false,
+                        },
+                        {
+                            label: 'Last 6 mo',
+                            value: [dateFns.subDays(new Date(), 31*6), new Date()],
+                            closeOverlay: false,
+                        },
+                        {
+                            label: 'Last 12 mo',
+                            value: [dateFns.subDays(new Date(), 31*12), new Date()],
+                            closeOverlay: false,
+                        },
+                        ]}
+                        disabledDate={date => dateFns.isAfter(date, new Date())} 
+                        onOk={date=> setDateRange(date) }
+                        />
                 <FormGroup className={classes.options}>
                 {/* <FormLabel component="legend">Data to obtain</FormLabel> */}
                     {/* <FormControlLabel

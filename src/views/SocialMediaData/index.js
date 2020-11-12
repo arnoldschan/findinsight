@@ -24,6 +24,7 @@ function SearchPost() {
             soon2: {
                 checked: false
         }})
+    const [dateRange, setDateRange] = useState([null, null])
     const searchHandler = () => {
         // if (typeof cancelToken != typeof undefined) {
         // cancelToken.cancel();
@@ -80,6 +81,7 @@ function SearchPost() {
             <Boxed style={{zIndex:3}}>
                     <Input keyword={keyword} setKeyword={setKeyword}
                         platform={platform} setPlatform={setPlatform}
+                        dateRange={dateRange} setDateRange={setDateRange}
                         searchHandler={searchHandler}
                     />
             </Boxed>
